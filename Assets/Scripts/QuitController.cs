@@ -23,6 +23,34 @@ public class QuitController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(!isPressed && GetValue() + threshold >= 1)
+            Pressed();
+
+        if (isPressed && GetValue() - threshold >= 0)
+            Released();
+
+    }
+
+    private float GetValue()
+    {
+        var value = Vector3.Distance(startPos, transform.localPosition) / joint.linearLimit.limit;
+
+        if (Mathf.Abs(value) < deadZone)
+            value = 0;
+
+        return Mathf.Clamp(value, -1, 1);
+    }
+
+    private void Pressed()
+    {
+        isPressed = true;
+        onPressed.Invoke();
+        Debug.Log("pressed");
+    }
+    private void Released()
+    {
+        isPressed = false;
+        OnReleased.Invoke();
+        Debug.Log("released");
     }
 }
