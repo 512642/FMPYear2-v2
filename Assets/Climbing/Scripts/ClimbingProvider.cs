@@ -17,14 +17,9 @@ public class ClimbingProvider : LocomotionProvider
     protected override void Awake()
     {
         base.Awake();
-        FindCharacterController();
     }
 
-    private void FindCharacterController()
-    {
-        if(!characterController);
-            characterController = system.xrOrigin.GetComponent<CharacterController>();
-    }
+
 
     public void AddProvider(VelocityContainer provider)
     {
@@ -76,10 +71,6 @@ public class ClimbingProvider : LocomotionProvider
         if (characterController)
         {
             characterController.Move(-velocity);
-        }
-        else
-        {
-            origin.position -= velocity;
         }
     }
 

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private InputActionReference jumpActionReference;
     [SerializeField] private float jumpForce = 50.0f;
-    public CharacterController controller;
+    public CharacterController characterController;
 
 
     public float gravity = -9.81f;
@@ -26,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         jumpActionReference.action.performed += OnJump;
-        
     }
 
     void Update()
@@ -40,14 +40,17 @@ public class PlayerMovement : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
 
-        controller.Move(velocity * Time.deltaTime);
+        characterController.Move(velocity * Time.deltaTime);
 
+        if (!characterController)
+            characterController = GetComponent<CharacterController>();
 
     }
     private void OnJump(InputAction.CallbackContext obj)
     {
         if (!isGrounded) return;
-        controller.Move(Vector3.up * jumpForce);
+        characterController.Move(Vector3.up * jumpForce);
+        print("jumping");
     }
 
 

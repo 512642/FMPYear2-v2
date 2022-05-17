@@ -10,6 +10,8 @@ public class GravityToggler : MonoBehaviour
     private ClimbingProvider climbingProvider;
     private ContinuousMoveProviderBase moveProvider;
 
+
+
     private void Awake()
     {
         climbingProvider = GetComponentInParent<ClimbingProvider>();
