@@ -9,18 +9,18 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private InputActionReference jumpActionReference;
-    [SerializeField] private float jumpForce = 50.0f;
     public CharacterController characterController;
 
 
     public float gravity = -9.81f;
+    public float jumpPower;
 
     public Transform groundCheck;
-    public float groundDistance = 0.4f;
+    public float groundDistance;
     public LayerMask groundMask;
 
 
-    Vector3 velocity;
+    public Vector3 velocity;
     bool isGrounded;
 
     // Start is called before the first frame update
@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
+        print("is grounded=" + isGrounded );
+
         if(isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
@@ -42,17 +44,13 @@ public class PlayerMovement : MonoBehaviour
 
         characterController.Move(velocity * Time.deltaTime);
 
-        if (!characterController)
-            characterController = GetComponent<CharacterController>();
-
     }
     private void OnJump(InputAction.CallbackContext obj)
     {
-        if (!isGrounded) return;
-        characterController.Move(Vector3.up * jumpForce);
-        print("jumping");
+        if(isGrounded) 
+        {
+            velocity.y = jumpPower;
+        }
     }
-
-
-
+    
 }

@@ -633,8 +633,8 @@
                     "id": "554d5e78-e088-4843-9a4c-1ab1d65d0757",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": "Tap",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Velocity",
@@ -760,10 +760,21 @@
                 {
                     "name": "",
                     "id": "f6c1b603-4434-41f1-89bc-649d3a686e17",
-                    "path": "<XRController>/primaryButton",
+                    "path": "<XRController>/triggerPressed",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ad9e8ba-8b4a-4026-afe1-e7733bc64e4c",
+                    "path": "<XRController>/thumbstickClicked",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Generic XR Controller",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
