@@ -10,20 +10,26 @@ public class ClimbingProvider : LocomotionProvider
 
     [SerializeField] private CharacterController characterController;
 
-    private bool isClimbing = false;
-    private List<VelocityContainer> activeVelocities = new List<VelocityContainer>();
-
+    public bool isClimbing = false;
+    public List<VelocityContainer> activeVelocities = new List<VelocityContainer>();
+    public Vector3 totalVelocity;
+    public Vector3 velocity;
 
     protected override void Awake()
     {
         base.Awake();
+        FindCharacterController();
     }
 
-
+    private void FindCharacterController()
+    {
+        if (!characterController)
+            characterController = system.xrOrigin.GetComponent<CharacterController>();
+    }
 
     public void AddProvider(VelocityContainer provider)
     {
-        if(!activeVelocities.Contains(provider))
+        if(!activeVelocities.Contains(provider)) 
             activeVelocities.Add(provider);
     }
 
@@ -41,6 +47,7 @@ public class ClimbingProvider : LocomotionProvider
             ApplyVelocity();
 
         TryEndClimb();
+
     }
 
     private void TryBeginClimb()
@@ -62,25 +69,22 @@ public class ClimbingProvider : LocomotionProvider
 
     private void ApplyVelocity()
     {
-        Vector3 velocity = CollectControllerVelocity();
+        velocity = CollectControllerVelocity();
         Transform origin = system.xrOrigin.transform;
 
         velocity = origin.TransformDirection(velocity);
         velocity *= Time.deltaTime;
-
-        if (characterController)
-        {
-            characterController.Move(-velocity);
-        }
+        characterController.Move(-velocity);
     }
 
-    private Vector3 CollectControllerVelocity()
+    public Vector3 CollectControllerVelocity()
     {
-        Vector3 totalVelocity = Vector3.zero;
+        totalVelocity = Vector3.zero;
 
         foreach(VelocityContainer container in activeVelocities)
             totalVelocity += container.Velocity;
 
+        
         return totalVelocity;
     }
 }

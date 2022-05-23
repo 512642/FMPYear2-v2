@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
 /// <summary>
@@ -9,13 +10,14 @@ public class GravityToggler : MonoBehaviour
 {
     private ClimbingProvider climbingProvider;
     private ContinuousMoveProviderBase moveProvider;
+    public PlayerMovement playerMovement;
 
 
 
     private void Awake()
     {
         climbingProvider = GetComponentInParent<ClimbingProvider>();
-        moveProvider = GetComponentInParent<ContinuousMoveProviderBase>();
+        playerMovement = GetComponentInParent<PlayerMovement>();
     }
 
     private void OnEnable()
@@ -24,18 +26,20 @@ public class GravityToggler : MonoBehaviour
         climbingProvider.endLocomotion += EnableGravity;
     }
 
+
+
     private void OnDisable()
     {
         climbingProvider.beginLocomotion -= DisableGravity;
         climbingProvider.endLocomotion -= EnableGravity;
     }
 
-    private void EnableGravity(LocomotionSystem _) => ToggleGravity(true);
+     void EnableGravity(LocomotionSystem _) => ToggleGravity(true);
 
-    private void DisableGravity(LocomotionSystem _) => ToggleGravity(false);
+     void DisableGravity(LocomotionSystem _) => ToggleGravity(false);
 
     private void ToggleGravity(bool value)
     {
-        moveProvider.useGravity = value;
+        playerMovement.enabled = value;
     }
 }

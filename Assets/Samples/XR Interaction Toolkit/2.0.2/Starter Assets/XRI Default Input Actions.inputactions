@@ -92,7 +92,7 @@
                 {
                     "name": "Velocity",
                     "type": "Value",
-                    "id": "e23f4516-4cf7-422f-aa39-a44788111a22",
+                    "id": "4dfdcc29-5e0b-44b7-9123-8b85d767aae5",
                     "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
@@ -212,7 +212,18 @@
                 },
                 {
                     "name": "",
-                    "id": "9941b78c-3ef6-4ec3-97b3-db3a6003e9a5",
+                    "id": "cb3d3167-d6cf-4b25-9bc7-7d8ce0d37d06",
+                    "path": "<XRController>{LeftHand}/deviceVelocity",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Continuous Move",
+                    "action": "Velocity",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f8f139a4-1bd6-4b53-816a-8856668d227f",
                     "path": "<OculusTouchController>{LeftHand}/devicePose/velocity",
                     "interactions": "",
                     "processors": "",
@@ -628,22 +639,22 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "554d5e78-e088-4843-9a4c-1ab1d65d0757",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Tap",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Velocity",
                     "type": "Value",
-                    "id": "3466ca33-489f-45e9-823c-0ff6b8d1ef0b",
+                    "id": "31930038-075e-41b7-84a3-04b0c7be6a38",
                     "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "jump",
+                    "type": "Button",
+                    "id": "2ee63d73-de90-4c09-9654-df83943ffe42",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -759,34 +770,45 @@
                 },
                 {
                     "name": "",
-                    "id": "f6c1b603-4434-41f1-89bc-649d3a686e17",
-                    "path": "<XRController>/triggerPressed",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8ad9e8ba-8b4a-4026-afe1-e7733bc64e4c",
-                    "path": "<XRController>/thumbstickClicked",
+                    "id": "61beab04-2937-49b0-bbaa-16e2fb3652d0",
+                    "path": "<XRController>{LeftHand}/deviceVelocity",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Jump",
+                    "groups": "Continuous Move",
+                    "action": "Velocity",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "df3e1596-6207-45d0-8eb2-98c5705b4773",
+                    "id": "3fdf4793-81c5-4968-bfc2-5ca6ac63e0c3",
                     "path": "<OculusTouchController>{RightHand}/devicePose/velocity",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Velocity",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "27a4cc37-3389-40b0-98ff-3cc9e722091b",
+                    "path": "<XRController>/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72e08cce-eb60-4da3-855a-a466adfa0701",
+                    "path": "<OculusTouchController>/thumbstickClicked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1140,6 +1162,76 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Turn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Velocity",
+            "id": "859cf04b-a694-46d2-a905-3b6c661c3bd9",
+            "actions": [
+                {
+                    "name": "RightVelocity",
+                    "type": "Value",
+                    "id": "566e2ab1-f7f2-44ca-bcef-1fd928c0b3ec",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "LeftVelocity",
+                    "type": "Value",
+                    "id": "dc1c3427-201b-494a-be5b-7b2401fea68c",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2355003b-ef5a-4aca-ad23-eae4663a89a3",
+                    "path": "<XRController>{RightHand}/deviceVelocity",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightVelocity",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "10391386-9496-4c95-b089-aca6634ab52d",
+                    "path": "<OculusTouchController>{RightHand}/devicePose/velocity",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightVelocity",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c8351eee-7299-4e34-8dc4-ef4298f64e3b",
+                    "path": "<XRController>{LeftHand}/deviceVelocity",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftVelocity",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f99583ec-41d3-4aad-aa13-4137c8660cbc",
+                    "path": "<OculusTouchController>{LeftHand}/devicePose/velocity",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftVelocity",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
